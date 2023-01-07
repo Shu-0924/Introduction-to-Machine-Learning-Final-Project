@@ -53,3 +53,7 @@ The average accuracy is based on 5 submission without selection after training
 ## Reproducing Submission
 To reproduct my submission without retraining, do the following steps:
 
+1. Download 109550074_Final_inference.py from here
+2. Download model.h5 from the link I provide
+3. Download test.csv from Kaggle of this competition (I also upload it)
+4. 
