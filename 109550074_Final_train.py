@@ -48,7 +48,9 @@ def build_model(column_num):
     model.add(Input(column_num))
     model.add(Dense(column_num))
     model.add(Dense(column_num))
+    model.add(Dense(column_num))
     model.add(Dropout(0.2))
+    model.add(Dense(16))
     model.add(Dense(16))
     model.add(Dense(16))
     model.add(Dropout(0.2))
@@ -73,5 +75,5 @@ if __name__ == '__main__':
     x_train, y_train = X[idxs], Y[idxs]
 
     m = build_model(x_train.shape[1])
-    m.fit(x_train, y_train, batch_size=128, epochs=50)
+    m.fit(x_train, y_train, batch_size=128, epochs=80)
     m.save(MODEL_PATH)
