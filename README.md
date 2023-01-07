@@ -68,6 +68,6 @@ To reproduct my submission without retraining, do the following steps:
         virtualenv -p <path/to/python3.10> myenv
         source myenv/bin/activate
         pip install -r requirements.txt
-        python 109550074_Final_inference.py
+        python3 109550074_Final_inference.py
         
 6. You can see the "submission.csv" in the same folder with 109550074_Final_inference.py, you can now submit it to Kaggle.
