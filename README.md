@@ -69,7 +69,7 @@ To reproduct my submission without retraining, do the following steps:
 
          pip install -r requirements.txt
          
-6.Run following command to start inference
+6. Run following command to start inference
         
         source myenv/bin/activate
         python 109550074_Final_inference.py
