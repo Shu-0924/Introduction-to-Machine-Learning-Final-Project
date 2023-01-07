@@ -54,6 +54,24 @@ The average accuracy is based on 5 submission without selection after training
 To reproduct my submission without retraining, do the following steps:
 
 1. Download 109550074_Final_inference.py from here
-2. Download model.h5 from the link I provide
-3. Download test.csv from Kaggle of this competition (I also upload it)
-4. 
+    
+2. Download model.h5 from the link I provide and put it into the same folder with 109550074_Final_inference.py  <br>
+   (Or put anywhere you want but remember to modify the path to model.h5 in 109550074_Final_inference.py)
+
+3. Download test.csv from Kaggle or here, and put it into the same folder with 109550074_Final_inference.py  <br>
+   (Or put anywhere you want but remember to modify the path to test.csv in 109550074_Final_inference.py)
+
+4. Run the following command (use your path of python 3.10)
+
+        virtualenv -p <path/to/python3.10> myenv
+
+5. Put requirement.txt into the same folder with 109550074_Final_inference.py and run command
+
+         pip install -r requirements.txt
+         
+6.Run following command to start inference
+        
+        source myenv/bin/activate
+        python 109550074_Final_inference.py
+        
+7. You can see the "submission.csv" in the same folder with 109550074_Final_inference.py, you can now submit it.
