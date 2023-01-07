@@ -70,4 +70,4 @@ To reproduct my submission without retraining, do the following steps:
         pip install -r requirements.txt
         python3 109550074_Final_inference.py
         
-6. You can see the "submission.csv" in the same folder with 109550074_Final_inference.py, you can now submit it to Kaggle.
+6. You can see the "submission.csv" in the same folder with 109550074_Final_inference.py. You can now submit it to Kaggle.
