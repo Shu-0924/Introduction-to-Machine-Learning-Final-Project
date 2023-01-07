@@ -40,7 +40,11 @@ Please remember to modify the path of "test.csv" and "model.h5"
 <br>
 
 ## Results
-Here is my best score on Kaggle (Submit after competition)
+The average accuracy is based on 5 submission without selection after training
+
+| Model       |  Best Accuracy   | Average Accuracy |
+| ----------- |----------------- | ---------------- |
+| My model    |      0.5906      |     0.590294     |
 
 ![](https://i.imgur.com/jBUCvDY.png)
 
