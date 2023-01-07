@@ -1,21 +1,24 @@
-from keras.models import load_model
+from keras.models import Sequential
+from keras.layers import Input, Dense, Dropout
+from keras.optimizers import Adam
+from keras.metrics import AUC
 import numpy as np
 import csv
 
 MODEL_PATH = './model.h5'
-TEST_DATA_PATH = './test.csv'
-SUBMISSION_PATH = './submission.csv'
+TRAIN_DATA_PATH = './train.csv'
 
 
 def load_data(path):
-    x_data = []
+    x_data, y_data = [], []
     with open(path, encoding='utf-8-sig') as fin:
         csv_reader = csv.reader(fin)
         next(csv_reader)
         for row in csv_reader:
             info = [row[2]] + row[7:]
-            x_data.append(info)
-    return x_data
+            x_data.append(info[:-1])
+            y_data.append(info[-1])
+    return x_data, y_data
 
 
 def fill_blank(x_data):
@@ -40,13 +43,37 @@ def fill_blank(x_data):
     return new_data
 
 
+def build_model(column_num):
+    model = Sequential()
+    model.add(Input(column_num))
+    model.add(Dense(column_num))
+    model.add(Dense(column_num))
+    model.add(Dense(column_num))
+    model.add(Dropout(0.2))
+    model.add(Dense(16))
+    model.add(Dense(16))
+    model.add(Dense(16))
+    model.add(Dropout(0.2))
+    model.add(Dense(8))
+    model.add(Dense(8))
+    model.add(Dropout(0.2))
+    model.add(Dense(4))
+    model.add(Dense(4))
+    model.add(Dense(1, activation='sigmoid'))
+    model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=[AUC()])
+    model.summary()
+    return model
+
+
 if __name__ == '__main__':
-    m = load_model(MODEL_PATH)
-    x_test = load_data(TEST_DATA_PATH)
-    x_test = np.array(fill_blank(x_test))
-    y_pred = m.predict(x_test, batch_size=128)
-    with open(SUBMISSION_PATH, 'w', newline='') as fout:
-        csv_writer = csv.writer(fout)
-        csv_writer.writerow(['id', 'failure'])
-        for idx, prob in enumerate(y_pred):
-            csv_writer.writerow([idx+26570, prob[0]])
+    X, Y = load_data(TRAIN_DATA_PATH)
+    X = np.array(fill_blank(X))
+    Y = np.array([[int(failure)] for failure in Y])
+
+    idxs = np.arange(X.shape[0])
+    np.random.shuffle(idxs)
+    x_train, y_train = X[idxs], Y[idxs]
+
+    m = build_model(x_train.shape[1])
+    m.fit(x_train, y_train, batch_size=128, epochs=80)
+    m.save(MODEL_PATH)
