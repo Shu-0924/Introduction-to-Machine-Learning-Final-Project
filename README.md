@@ -74,4 +74,4 @@ To reproduct my submission without retraining, do the following steps:
         source myenv/bin/activate
         python 109550074_Final_inference.py
         
-7. You can see the "submission.csv" in the same folder with 109550074_Final_inference.py, you can now submit it.
+7. You can see the "submission.csv" in the same folder with 109550074_Final_inference.py, you can now submit it to Kaggle.
